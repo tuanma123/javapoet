@@ -1,6 +1,7 @@
 package com.squareup.javapoet;
 
 import org.junit.Test;
+import sun.reflect.annotation.AnnotationType;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,6 +11,7 @@ public class CommentsTest {
                 .addJavadoc("Multiplication in a loop")
                 .returns(int.class)
                 .addComment("For loop comment")
+                .addAnnotation(Override.class)
                 .addStatement("int result = 0")
                 .beginControlFlow("for (int i = " + from + "; i < " + to + "; i++)")
                 .addStatement("result = result " + op + " i")
@@ -24,6 +26,7 @@ public class CommentsTest {
         System.out.println(test);
         String expected = "/**\n" +
                 " * Multiplication in a loop */\n" +
+                "@java.lang.Override\n" +
                 "int multiply10to20() {\n" +
                 "  // For loop comment\n" +
                 "  int result = 0;\n" +
