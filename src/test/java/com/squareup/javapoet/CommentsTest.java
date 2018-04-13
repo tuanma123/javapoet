@@ -18,8 +18,8 @@ public class CommentsTest {
                 .beginControlFlow("for (int i = " + from + "; i < " + to + "; i++)")
                 .addStatement("result = result " + op + " i")
                 .endControlFlow()
+                .addNamedCode("int x = 0\n", new HashMap<>())
                 .addStatement("return result")
-                .addNamedCode("What", new HashMap<>())
                 .build();
     }
 
@@ -37,6 +37,7 @@ public class CommentsTest {
                 "  for (int i = 10; i < 20; i++) {\n" +
                 "    result = result * i;\n" +
                 "  }\n" +
+                "  int x = 0\n" +
                 "  return result;\n" +
                 "}\n";
         assertEquals(test.toString(), expected);
