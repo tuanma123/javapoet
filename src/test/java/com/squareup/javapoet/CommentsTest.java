@@ -3,6 +3,8 @@ package com.squareup.javapoet;
 import org.junit.Test;
 import sun.reflect.annotation.AnnotationType;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 
 public class CommentsTest {
@@ -17,11 +19,13 @@ public class CommentsTest {
                 .addStatement("result = result " + op + " i")
                 .endControlFlow()
                 .addStatement("return result")
+                .addNamedCode("What", new HashMap<>())
                 .build();
     }
 
     @Test
     public void generateForLoopTest() {
+        CodeBlock.builder().add("I ate $L $L", 3, "tacos");
         MethodSpec test = computeRange("multiply10to20", 10, 20, "*");
         System.out.println(test);
         String expected = "/**\n" +
