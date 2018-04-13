@@ -4,10 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class ForLoopTest {
+public class CommentsTest {
     private MethodSpec computeRange(String name, int from, int to, String op) {
         return MethodSpec.methodBuilder(name)
                 .returns(int.class)
+                .addComment("For loop comment")
                 .addStatement("int result = 0")
                 .beginControlFlow("for (int i = " + from + "; i < " + to + "; i++)")
                 .addStatement("result = result " + op + " i")
@@ -21,6 +22,7 @@ public class ForLoopTest {
         MethodSpec test = computeRange("multiply10to20", 10, 20, "*");
         System.out.println(test);
         String expected = "int multiply10to20() {\n" +
+                "  // For loop comment\n" +
                 "  int result = 0;\n" +
                 "  for (int i = 10; i < 20; i++) {\n" +
                 "    result = result * i;\n" +
